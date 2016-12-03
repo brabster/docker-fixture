@@ -1,0 +1,32 @@
+* docker-fixture
+
+Docker containers as clojure.test fixtures
+
+* Usage
+
+#+BEGIN_SRC clojure
+(ns docker.fixture-test
+  (:require [docker.fixture :as docker]
+            [clj-http.lite.client :as http]
+            [clojure.test :refer :all]))
+
+(def port (docker/rand-port))
+(def host (docker/host))
+
+(def fixture-response (atom nil))
+
+(use-fixtures :once
+  (docker/new-fixture {:cmd ["docker" "run" "-d" "-p" (str port ":80") "keisato/http-echo"]
+                       :sleep 500
+                       :init-fn (fn [component]
+                                  (reset! fixture-response
+                                          (component-http-get (:host component) port)))}))
+
+#+END_SRC
+
+* License
+
+Copyright © 2016 Paul Brabban
+
+Distributed under the Eclipse Public License either version 1.0 or (at
+your option) any later version.

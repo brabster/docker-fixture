@@ -1,0 +1,16 @@
+language: clojure
+
+lein: 2.6.1
+
+cache:
+  directories:
+    - $HOME/.m2
+
+script:
+ - lein check
+
+deploy:
+  - provider: script
+    script: scripts/deploy.sh
+    on:
+      all_branches: true
