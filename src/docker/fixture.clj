@@ -1,4 +1,5 @@
 (ns docker.fixture
+  "Docker-based clojure.test fixture"
   (:require [com.stuartsierra.component :as component]
             [clojure.string :refer [trim-newline split]]
             [clojure.java.shell :refer [sh]]
