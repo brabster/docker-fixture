@@ -2,6 +2,12 @@
 
 Docker containers as clojure.test fixtures
 
+[![Clojars Project](https://img.shields.io/clojars/v/docker-fixture.svg)](https://clojars.org/docker-fixture)
+
+[![Travis Build Status](https://img.shields.io/travis/brabster/docker-fixture.svg)](https://travis-ci.org/brabster/docker-fixture)
+
+[![Latest Release](https://img.shields.io/github/release/brabster/docker-fixture.svg)](https://github.com/brabster/docker-fixture/releases/latest)
+
 * Usage
 
 #+BEGIN_SRC clojure
