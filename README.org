@@ -5,7 +5,8 @@ Docker containers as clojure.test fixtures
 [[https://travis-ci.org/brabster/docker-fixture][https://img.shields.io/travis/brabster/docker-fixture.svg]]
 [[https://github.com/brabster/docker-fixture/releases/latest][https://img.shields.io/github/release/brabster/docker-fixture.svg]]
 
-Get the latest version on [[https://img.shields.io/clojars/v/docker-fixture.svg][https://clojars.org/docker-fixture]]
+Get the latest version on Clojars
+[[https://img.shields.io/clojars/v/docker-fixture.svg][https://clojars.org/docker-fixture]]
 
 * Usage
 
