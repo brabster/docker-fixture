@@ -45,18 +45,20 @@
 
 (defn new-fixture
   "A new test fixture using the docker cmd, sleeping for sleep ms
-  before allowing test to continue, then running init-fn, a fn taking
-  an argument of component"
+  before allowing test to continue, then running init-fn for side
+  effects, a fn taking an argument of component."
   [{:keys [cmd sleep init-fn]
     :or {init-fn identity
          sleep 1000}}]
   (let [component (atom nil)]
     (fn [f]
-      (do (reset! component
-                  (try (component/start (new-container {:cmd cmd :sleep sleep}))
-                       (catch Exception e
-                         (log/error "Unable to start container" (ex-data e))
-                         (throw e))))
-          (init-fn component))
-      (f)
-      (component/stop @component))))
+      (reset! component
+              (try (component/start (new-container {:cmd cmd :sleep sleep}))
+                   (catch Exception e
+                     (log/error "Unable to start container" (ex-data e))
+                     (throw e))))
+      (init-fn component)
+      (try
+        (f)
+        (finally
+          (component/stop @component))))))
