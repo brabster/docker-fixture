@@ -13,8 +13,8 @@
 (def host
   "Get the container host; try docker-machine, default to localhost"
   (memoize #(try
-              (trim-newline (sh "docker-machine" "ip"))
-              (catch Exception e "localhost"))))
+              (trim-newline (:out (sh "docker-machine" "ip")))
+              (catch Exception e (prn 'Error 'getting 'host e) "localhost"))))
 
 (defrecord Container [cmd sleep]
   component/Lifecycle
